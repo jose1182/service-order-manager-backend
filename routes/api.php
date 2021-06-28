@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'App\Http\Controllers\Api\AuthController@login')->name('api.login');
 Route::post('/register', 'App\Http\Controllers\Api\AuthController@register')->name('api.register');
 
+Route::post('/forgot-password', 'App\Http\Controllers\Api\ForgotPasswordController@sendResetLinkEmail')->name('api.forgot-password');
