@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\Auth\LoginAction;
+use App\Actions\Auth\RegisterAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -13,27 +15,13 @@ use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request, LoginAction $loginAction){
 
-        $passwordGrandClient = Client::where('password_client', 1)->first();
-
-        $data = [
-            'grant_type' => 'password',
-            'client_id' => $passwordGrandClient->id,
-            'client_secret' => $passwordGrandClient->secret,
-            'username' => $request->get('email'),
-            'password' => $request->get('password'),
-            'scope' => '*',
-        ];
-
-        $tokenRequest = Request::create('/oauth/token', 'post', $data);
-
-        $tokenResponse = app()->handle($tokenRequest);
-        $contentString = $tokenResponse->content();
-        $tokenContent = json_decode($contentString, true);
+        $passportRequest = $loginAction->run($request->all());
+        $tokenContent = $passportRequest['content'];
 
         if(!empty($tokenContent['access_token'])){
-            return $tokenResponse;
+            return $passportRequest['response'];
         }
 
         return response()->json([
@@ -41,7 +29,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request){
+    public function register(Request $request, RegisterAction $registerAction){
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -54,11 +42,7 @@ class AuthController extends Controller
         }
 
 
-        $user = User::create([
-            'name'=> $request->get('name'),
-            'email'=> $request->get('email'),
-            'password'=> Hash::make($request->get('password'))
-        ]);
+        $user = $registerAction->run($request->all());
 
         if (!$user) {
             return response()->json(['success' => false, 'message' => 'Registration Failed'], 500);
