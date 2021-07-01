@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/me', function (Request $request) {
-   return $request->user();
+Route::group(["middleware" => "auth:api"], function () {
+    Route::get('/me', 'App\Http\Controllers\Api\UsersController@me')->name('api.me');
 });
 
 Route::post('/login', 'App\Http\Controllers\Api\AuthController@login')->name('api.login');
