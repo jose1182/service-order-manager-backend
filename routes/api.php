@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "auth:api"], function () {
     Route::get('/me', 'App\Http\Controllers\Api\UsersController@me')->name('api.me');
+    Route::post('/change-password', 'App\Http\Controllers\Api\UsersController@changePassword')->name('api.change-password');
+    Route::post('/change-details', 'App\Http\Controllers\Api\UsersController@changeDetails')->name('api.change-details');
 });
 
 Route::post('/login', 'App\Http\Controllers\Api\AuthController@login')->name('api.login');
