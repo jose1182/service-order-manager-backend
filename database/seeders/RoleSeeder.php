@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -23,5 +24,9 @@ class RoleSeeder extends Seeder
                 "name" => "Admin",
                 "slug" => "admin"
             ]]);
+
+            $userRole = Role::user()->firstOrFail();
+            $userPermissions = Permission::where('slug', ['view-technical-dashboard'])->get()->pluck('id')->toArray();
+            $userRole->permissions()->sync($userPermissions);
     }
 }
