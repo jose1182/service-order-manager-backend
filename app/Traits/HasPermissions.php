@@ -7,10 +7,13 @@ use PhpParser\Builder\Trait_;
 
 trait HasPermissions {
     public function hasPermissionTo(...$permissions){
-        //$user->hasPermissionTo('edit-user', 'edit-issue);
-        return $this->permissions()->whereIn('slug', $permissions)->count() || $this->roles()->whereHas('permissions', function($q) use($permissions){
-            $q->whereHas('slug', $permissions);
-        })-> count();
+
+        // $user->hasPermissionTo('edit-user', 'edit-issue');
+        return $this->permissions()->whereIn('slug', $permissions)->count() ||
+            $this->roles()->whereHas('permissions', function ($q) use ($permissions) {
+                $q->whereIn('slug', $permissions);
+            })->count();
+
     }
 
     public function getPermissionIdsBySlug($permissions){

@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Permission;
-use Illuminate\Auth\Access\Gate;
-use Illuminate\Support\Facades\Gate as FacadesGate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class PermissionsServiceProvider extends ServiceProvider
