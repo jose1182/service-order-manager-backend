@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\User\UpdateUserDetailsAction;
 use App\Actions\User\UpdateUserPasswordAction;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangeDetailsRequest;
 use App\Http\Requests\ChangePasswordRequest;

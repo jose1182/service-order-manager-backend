@@ -61,4 +61,8 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function servicesOrders(){
+        return $this->belongsToMany(ServiceOrder::class, 'users_service_orders');
+    }
 }

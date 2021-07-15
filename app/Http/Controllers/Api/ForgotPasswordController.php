@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use App\Http\Requests\ForgotPasswordRequest;
-use Illuminate\Validation\ValidationException;
 
 class ForgotPasswordController extends Controller
 {
