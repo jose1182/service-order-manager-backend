@@ -28,5 +28,9 @@ class RoleSeeder extends Seeder
             $userRole = Role::user()->firstOrFail();
             $userPermissions = Permission::where('slug', ['view-technical-dashboard'])->get()->pluck('id')->toArray();
             $userRole->permissions()->sync($userPermissions);
+
+            $userRole = Role::admin()->firstOrFail();
+            $userPermissions = Permission::where('slug', ['view-admin-dashboard'])->get()->pluck('id')->toArray();
+            $userRole->permissions()->sync($userPermissions);
     }
 }

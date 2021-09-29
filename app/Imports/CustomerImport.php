@@ -16,9 +16,9 @@ class CustomerImport implements ToModel, WithHeadingRow, SkipsOnError
 
     public function model(array $row)
     {
-        var_dump($row);
+        //var_dump($row);
         return new Customer([
-            'id' => $row['id'],
+            'code' => $row['code'],
             'name'=> $row['name'],
             'location'=> $row['location'],
             'phone' => $row['phone']

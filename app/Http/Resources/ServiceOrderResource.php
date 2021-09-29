@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\ServiceOrder;
+use App\Models\Order;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ServiceOrderResource extends JsonResource
@@ -15,7 +15,7 @@ class ServiceOrderResource extends JsonResource
      */
     public function toArray($request)
     {
-        $serviceOrders = ServiceOrder::all();
+        $serviceOrders = Order::all();
 
         return [
             'service_orders' => $serviceOrders

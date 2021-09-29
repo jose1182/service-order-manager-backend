@@ -15,15 +15,16 @@ class CustomerOrdersController extends Controller
 
     public function index(){
 
-        if (Gate::allows('view-technical-dashboard')) {
+        if (Gate::allows('view-admin-dashboard')) {
             return new ServiceOrderResource(Auth::user());
         }
     }
 
     public function import(Request $request){
 
-        $path = $request->file('file');
 
+
+        $path = $request->file('file');
         $import = new CustomerOrdersImport();
         $import->import($path);
 
@@ -36,8 +37,7 @@ class CustomerOrdersController extends Controller
         }
 
         return response()->json([
-            'message' => 'Successfully',
-            'errors' => $import->errors()
+            'message' => 'Successfully'
         ]);
     }
 }

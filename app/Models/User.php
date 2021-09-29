@@ -44,6 +44,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    protected static function boot(){
+        parent::boot();
+
+        static::created(function ($user){
+            $user->profile()->create([
+                'title' => $user->name,
+            ]);
+        });
+
+
+    }
+
+
     public function roles() {
         return $this->belongsToMany(Role::class, 'users_roles');
     }
@@ -53,7 +67,7 @@ class User extends Authenticatable
     }
 
     public function hasRoles(...$roles){
-        //$user->hasRole('admin', 'robotic')
+        //$user->hasRole('admin', 'robotic');
         return $this->roles()->whereIn('slug', $roles)->count();
     }
 
@@ -62,7 +76,21 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function servicesOrders(){
-        return $this->belongsToMany(ServiceOrder::class, 'users_service_orders');
+    public function profile(){
+        return $this->hasOne(Profile::class);
     }
+
+    public function services(){
+        return $this->hasMany(Service::class);
+
+    }
+//     public function servicesOrders(){
+// //        return $this->belongsToMany(ServiceOrder::class, 'users_service_orders');
+//         return $this->belongsToMany(ServiceOrder::class);
+
+//     }
+
+    // public function service(){
+    //     return $this->belongsToMany(Service::class);
+    // }
 }

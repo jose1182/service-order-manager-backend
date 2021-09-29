@@ -7,14 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    //public $incrementing = false;
 
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        'code',
         'name',
         'location',
         'phone'
     ];
+
+    //Relación uno a muchos
+    public function address(){
+        return $this->hasMany(Address::class);
+    }
+
+    //Relación uno a muchos
+    public function contacts(){
+        return $this->hasMany(Contacts::class);
+    }
+
+    //Relación uno a muchos
+    public function services(){
+        return $this->hasMany(Service::class);
+
+    }
+
 }

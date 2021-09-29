@@ -3,7 +3,7 @@
 namespace App\Imports;
 
 use Throwable;
-use App\Models\ServiceOrder;
+use App\Models\Order;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Validators\Failure;
@@ -16,20 +16,22 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Validators\ValidationException;
 
-class CustomerOrdersImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidation, SkipsOnFailure
+class CustomerOrdersImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
 {
-    use Importable, SkipsErrors, SkipsFailures;
+    use Importable, SkipsFailures;
 
     public function model(array $row)
     {
         //var_dump($row);
 
-        return new ServiceOrder([
-            'costumer_id' => $row['no'],
+        return new Order([
+            'order_service' => 'not created',
+            'costumer_code' => $row['no'],
+            'costumer_name' => $row['nombre'],
             'pev' => $row['pedido_no'],
             'order_date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['fecha_pedido']),
             'shipment_date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['shipment_date']),
-            'name_product' => $row['producto_no'],
+            'product_name' => $row['producto_no'],
             'quantity' => $row['quantity'],
             'description' => $row['description']
         ]);
