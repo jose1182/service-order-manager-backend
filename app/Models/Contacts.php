@@ -13,4 +13,10 @@ class Contacts extends Model
     public function costumer(){
         return $this->belongsTo(Customer::class);
     }
+
+    //Relación uno a muchos
+    public function services(){
+        return $this->hasMany(Service::class);
+
+    }
 }

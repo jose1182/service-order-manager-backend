@@ -25,7 +25,11 @@ class ServiceResource extends JsonResource
             'issue_date' => $this->issue_date,
             'order_details' => $order,
             'project' => $this->project,
-            'costumer'=> $this->customer
+            'costumer'=> $this->customer,
+            'contact'=> $this->contact,
+            'contacting'=>$this->contacting,
+            'technician'=> $this->technician,
+            'responsible'=>$this->responsible
         ];
     }
 }

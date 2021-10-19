@@ -6,12 +6,13 @@ use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Customer;
-use Illuminate\Http\Client\ResponseSequence;
 
 class ServiceAction{
     public function run($request){
 
+        //Find customer code to create
         $costumer = Customer::select('id')->where('code', $request['costumer_code'])->first();
+
         $date = Carbon::now();
 
         $service = Service::create([
@@ -19,7 +20,7 @@ class ServiceAction{
             'issue_date'    => $date,
             'order_id'      => $request['id'],
             'project_id'    => $request['project_id'],
-            'customer_id'   => $costumer
+            'customer_id'   => $costumer->id
         ]);
 
         if($service){

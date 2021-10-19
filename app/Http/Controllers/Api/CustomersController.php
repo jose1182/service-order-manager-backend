@@ -64,6 +64,14 @@ class CustomersController extends Controller
         return response()->json(["success" => false]);
     }
 
+    public function showById($id){
+
+        if(Gate::allows('view-admin-dashboard')){
+            return Customer::findOrFail($id);
+            //return new ContactsController(Contacts::all());
+        }
+    }
+
     public function destroy($id){
 
         $customer = Customer::findOrFail($id);

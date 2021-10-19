@@ -34,6 +34,14 @@ class Service extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function contact(){
+        return $this->belongsTo(Contacts::class);
+    }
+
+    public function contacting(){
+        return $this->belongsTo(Contacts::class);
+    }
+
     public function technician(){
         return $this->belongsTo(User::class);
     }
