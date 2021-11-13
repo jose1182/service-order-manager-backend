@@ -44,6 +44,13 @@ class UsersController extends Controller
         }
     }
 
+
+    public function allUsers(){
+        if(Gate::allows('view-admin-dashboard')){
+            return User::all();
+        }
+    }
+
     public function changePassword(ChangePasswordRequest $request, UpdateUserPasswordAction $updateUserPasswordAction) {
 
         if ($updateUserPasswordAction->run($request->all(), Auth::id())) {

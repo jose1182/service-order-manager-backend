@@ -27,6 +27,11 @@ class CreateServicesTable extends Migration
             $table->unsignedBigInteger('contacting_id')->nullable();
             $table->unsignedBigInteger('address_id')->nullable();
 
+            $table->date('service_date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->integer('expected_hours')->nullable();
+
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('technician_id')->nullable();
             $table->unsignedBigInteger('responsible_id')->nullable();

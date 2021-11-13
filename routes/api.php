@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "auth:api"], function () {
     Route::get('/list-users', 'App\Http\Controllers\Api\UsersController@index')->name('api.index');
+    Route::get('/service-users', 'App\Http\Controllers\Api\UsersController@allUsers')->name('api.service-users');
     Route::post('/switch-roles', 'App\Http\Controllers\Api\SwitchRoleController@switchRole')->name('api.switchRole');
     Route::get('/me', 'App\Http\Controllers\Api\UsersController@me')->name('api.me');
     Route::post('/change-password', 'App\Http\Controllers\Api\UsersController@changePassword')->name('api.change-password');
