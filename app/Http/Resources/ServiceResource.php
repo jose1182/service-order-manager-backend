@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,9 +27,10 @@ class ServiceResource extends JsonResource
             'issue_date' => $this->issue_date,
             'order_details' => $order,
             'project' => $this->project,
-            'costumer'=> $this->customer,
+            'costumer'=> $this->costumer,
             'contact'=> $this->contact,
-            'contacting'=>$this->contacting,
+            'endCostumer'=>$this->end_costumer,
+            'endContact'=>$this->end_contact,
             'user'=>$this->user,
             'technician'=> $this->technician,
             'responsible'=>$this->responsible,

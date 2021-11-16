@@ -19,9 +19,8 @@ class CreateContactsTable extends Migration
             $table->string('phone');
             $table->string('email');
 
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
-
+            $table->unsignedBigInteger('costumer_id')->nullable();
+            $table->foreign('costumer_id')->references('id')->on('customers')->onDelete('set null');
             $table->timestamps();
         });
     }

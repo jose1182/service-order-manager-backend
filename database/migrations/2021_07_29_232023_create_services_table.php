@@ -22,9 +22,10 @@ class CreateServicesTable extends Migration
 
             $table->unsignedBigInteger('project_id')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
-            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->unsignedBigInteger('costumer_id')->nullable();
             $table->unsignedBigInteger('contact_id')->nullable();
-            $table->unsignedBigInteger('contacting_id')->nullable();
+            $table->unsignedBigInteger('end_costumer_id')->nullable();
+            $table->unsignedBigInteger('end_contact_id')->nullable();
             $table->unsignedBigInteger('address_id')->nullable();
 
             $table->date('service_date')->nullable();
@@ -53,9 +54,10 @@ class CreateServicesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('set null');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
+            $table->foreign('costumer_id')->references('id')->on('customers')->onDelete('set null');
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('set null');
-            $table->foreign('contacting_id')->references('id')->on('contacts')->onDelete('set null');
+            $table->foreign('end_costumer_id')->references('id')->on('customers')->onDelete('set null');
+            $table->foreign('end_contact_id')->references('id')->on('contacts')->onDelete('set null');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('set null');
 
 

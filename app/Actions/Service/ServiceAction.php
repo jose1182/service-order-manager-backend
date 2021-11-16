@@ -20,7 +20,7 @@ class ServiceAction{
             'issue_date'    => $date,
             'order_id'      => $request['id'],
             'project_id'    => $request['project_id'],
-            'customer_id'   => $costumer->id
+            'costumer_id'   => $costumer->id
         ]);
 
         if($service){

@@ -30,7 +30,7 @@ class Service extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function customer(){
+    public function costumer(){
         return $this->belongsTo(Customer::class);
     }
 
@@ -38,9 +38,14 @@ class Service extends Model
         return $this->belongsTo(Contacts::class);
     }
 
-    public function contacting(){
+    public function end_costumer(){
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function end_contact(){
         return $this->belongsTo(Contacts::class);
     }
+
 
     public function technician(){
         return $this->belongsTo(User::class);

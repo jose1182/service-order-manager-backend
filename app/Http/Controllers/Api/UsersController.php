@@ -64,7 +64,6 @@ class UsersController extends Controller
 
         if ($updateUserDetailsAction->run($request->all(), Auth::id())) {
             return response()->json(["success" => true]);
-
         }
         return response()->json(["success" => false]);
     }

@@ -25,7 +25,7 @@ Route::group(["middleware" => "auth:api"], function () {
     //Customer Class
     Route::post('/import-customers', 'App\Http\Controllers\Api\CustomersController@import')->name('api.import-customers');
     Route::get('/list-customers', 'App\Http\Controllers\Api\CustomersController@index')->name('api.list-customers');
-    Route::get('/get-customer/{id}', 'App\Http\Controllers\Api\CustomersController@showById')->name('api.get-customer');
+    Route::get('/get-costumer/{id}', 'App\Http\Controllers\Api\CustomersController@showById')->name('api.get-costumer');
     Route::post('/create-customer', 'App\Http\Controllers\Api\CustomersController@store')->name('api.create-store');
     Route::post('/update-customer', 'App\Http\Controllers\Api\CustomersController@changeDetails')->name('api.update-customer');
     Route::post('/delete-customer/{id}', 'App\Http\Controllers\Api\CustomersController@destroy')->name('api.delete-customer');
@@ -33,6 +33,8 @@ Route::group(["middleware" => "auth:api"], function () {
     //Service Class
     Route::post('/create-service', 'App\Http\Controllers\Api\ServiceOrdersController@store')->name('api.create-service');
     Route::get('/show-service/{id}', 'App\Http\Controllers\Api\ServiceOrdersController@show')->name('api.show-service');
+    Route::post('/update-service', 'App\Http\Controllers\Api\ServiceOrdersController@updateServiceDetails')->name('api.update-service');
+
 
     //Projects
     Route::get('/list-projects', 'App\Http\Controllers\Api\ProjectsController@index')->name('api.list-projects');
