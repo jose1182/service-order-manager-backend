@@ -9,6 +9,13 @@ class Contacts extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'costumer_id'
+    ];
+
     //relación uno a muchos (inversa)
     public function costumer(){
         return $this->belongsTo(Customer::class);

@@ -26,7 +26,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::post('/import-customers', 'App\Http\Controllers\Api\CustomersController@import')->name('api.import-customers');
     Route::get('/list-customers', 'App\Http\Controllers\Api\CustomersController@index')->name('api.list-customers');
     Route::get('/get-costumer/{id}', 'App\Http\Controllers\Api\CustomersController@showById')->name('api.get-costumer');
-    Route::post('/create-customer', 'App\Http\Controllers\Api\CustomersController@store')->name('api.create-store');
+    Route::post('/create-customer', 'App\Http\Controllers\Api\CustomersController@store')->name('api.create-costumer');
     Route::post('/update-customer', 'App\Http\Controllers\Api\CustomersController@changeDetails')->name('api.update-customer');
     Route::post('/delete-customer/{id}', 'App\Http\Controllers\Api\CustomersController@destroy')->name('api.delete-customer');
 
@@ -40,7 +40,11 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::get('/list-projects', 'App\Http\Controllers\Api\ProjectsController@index')->name('api.list-projects');
 
     //Contacts
+    Route::get('/list-contacts', 'App\Http\Controllers\Api\ContactsController@index')->name('api.list-contacts');
     Route::get('/list-contactsId/{id}', 'App\Http\Controllers\Api\ContactsController@showById')->name('api.list-contactsId');
+    Route::post('/delete-contact/{id}', 'App\Http\Controllers\Api\ContactsController@destroy')->name('api.delete-contact');
+    Route::post('/create-contact', 'App\Http\Controllers\Api\ContactsController@store')->name('api.create-contact');
+    Route::post('/update-contact', 'App\Http\Controllers\Api\ContactsController@changeDetails')->name('api.update-contact');
 });
 
 Route::post('/login', 'App\Http\Controllers\Api\AuthController@login')->name('api.login');
