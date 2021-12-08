@@ -23,7 +23,6 @@ class ContactsController extends Controller
     }
 
     public function index(){
-
         if(Gate::allows('view-admin-dashboard')){
             return  new ContactsCollection(Contacts::all());
         }

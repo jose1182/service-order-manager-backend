@@ -84,6 +84,7 @@ class User extends Authenticatable
         return $this->hasMany(Service::class);
 
     }
+
 //     public function servicesOrders(){
 // //        return $this->belongsToMany(ServiceOrder::class, 'users_service_orders');
 //         return $this->belongsToMany(ServiceOrder::class);

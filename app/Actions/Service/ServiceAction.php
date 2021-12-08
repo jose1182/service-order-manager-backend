@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceAction{
     public function run($request){
@@ -20,6 +21,7 @@ class ServiceAction{
             'issue_date'    => $date,
             'order_id'      => $request['id'],
             'project_id'    => $request['project_id'],
+            'user_id'       => Auth::user()->id,
             'costumer_id'   => $costumer->id
         ]);
 

@@ -10,9 +10,18 @@ use App\Actions\Service\updateServiceDetailsAction;
 use App\Http\Resources\ServiceResource;
 use App\Http\Requests\ServiceCreateRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use App\Http\Resources\ServiceOrderCollection;
+use App\Models\Order;
 
 class ServiceOrdersController extends Controller
 {
+
+    public function index (){
+        if(Gate::allows('view-admin-dashboard')){
+            return new ServiceOrderCollection(Service::all());
+        }
+    }
+
     public function store(ServiceCreateRequest $ServiceCreateRequest, ServiceAction $serviceAction){
 
         $service = $serviceAction->run($ServiceCreateRequest->all());
@@ -37,5 +46,22 @@ class ServiceOrdersController extends Controller
 
         return response()->json(["respuesta" => $updateServiceRequest->all()]);
 
+    }
+
+    public function destroy($id){
+
+        $service = Service::findOrFail($id);
+
+        if($service->order_id){
+           $order = Order::findOrFail($service->order_id);
+           $order->order_service = 'not created' ;
+           $order->save();
+        }
+
+        if($service->delete()){
+          return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 }

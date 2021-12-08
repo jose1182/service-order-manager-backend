@@ -31,13 +31,18 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::post('/delete-customer/{id}', 'App\Http\Controllers\Api\CustomersController@destroy')->name('api.delete-customer');
 
     //Service Class
+    Route::get('/list-services', 'App\Http\Controllers\Api\ServiceOrdersController@index')->name('api-list-services');
     Route::post('/create-service', 'App\Http\Controllers\Api\ServiceOrdersController@store')->name('api.create-service');
     Route::get('/show-service/{id}', 'App\Http\Controllers\Api\ServiceOrdersController@show')->name('api.show-service');
     Route::post('/update-service', 'App\Http\Controllers\Api\ServiceOrdersController@updateServiceDetails')->name('api.update-service');
+    Route::post('/delete-service/{id}', 'App\Http\Controllers\Api\ServiceOrdersController@destroy')->name('api.delete-service');
 
 
     //Projects
     Route::get('/list-projects', 'App\Http\Controllers\Api\ProjectsController@index')->name('api.list-projects');
+
+    //Profile
+    Route::get('/count/{user}', 'App\Http\Controllers\Api\ProfileController@index')->name('api-count');
 
     //Contacts
     Route::get('/list-contacts', 'App\Http\Controllers\Api\ContactsController@index')->name('api.list-contacts');
